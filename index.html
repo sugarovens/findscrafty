@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <input type="text" id="inputField" placeholder="Type whatever here"> 
+        </fieldset>
+        <button class="cf-fieldset__button" type="button" onclick="submitForm()">Submit</button>
+    </form>
+    
+    <div id="output"></div>
+    <div id="test">sad</div>
+
+    <script>
+        function submitForm() {
+            var inputText = document.getElementById("inputField").value;
+        
+            // AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/scrafty/?input_text=" + inputText, true);
+
+        xhr.onload = function() {
+            var outputDiv = document.getElementById("output");
+            if (xhr.status == 200) {
+                var response = JSON.parse(xhr.responseText);
+                
+                outputDiv.innerText = response.message;
+            }
+            else {
+                outputDiv.innerText = "b86bhb"
+            }
+
+        };
+
+        xhr.send();
+        }
+    </script>
+</body>
+</html>
